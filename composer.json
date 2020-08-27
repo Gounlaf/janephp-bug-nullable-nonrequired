@@ -1,0 +1,47 @@
+{
+  "name": "gounlaf/janephp-bug",
+  "type": "project",
+  "license": "MIT",
+  "require-dev": {
+    "php": ">=7.4",
+    "jane-php/open-api-runtime": "^6.1",
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "jane-php/open-api-3": "^6.1",
+    "nyholm/psr7": "^1.3",
+    "php-http/mock-client": "^1.4",
+    "phpunit/phpunit": "^9.3",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gounlaf\\JanephpBug\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Gounlaf\\JanephpBug\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "@generate-api-client"
+    ],
+    "post-update-cmd": [
+      "@generate-api-client"
+    ],
+    "dump": [
+      "composer dump-autoload -o"
+    ],
+    "generate-api-client": [
+      "vendor/bin/jane-openapi generate --config-file=jane-configuration.php",
+      "@dump"
+    ]
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
